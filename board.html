@@ -11,6 +11,37 @@
     />
     <title>KICSV소개</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- <script src="./assets/js/firebase.js"></script> -->
+
+    <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+      } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyB-MHHv4MrHpeHHqTntiGUQ_OhSfFQcPMs",
+        authDomain: "kic-home-board.firebaseapp.com",
+        projectId: "kic-home-board",
+        storageBucket: "kic-home-board.appspot.com",
+        messagingSenderId: "609107485683",
+        appId: "1:609107485683:web:d1c116f3ed6185bb922886",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      const querySnapshot = await getDocs(collection(db, "posts"));
+      querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data()}`);
+      });
+    </script>
+
     <!-- Favicon-->
     <link
       rel="icon"
@@ -91,7 +122,7 @@
             <div class="section-heading">
               <h2>KIC 실리콘밸리 소식</h2>
             </div>
-            <div class="row pb-5 mb-4 gy-5">
+            <div class="row pb-5 mb-4 gy-5 gx-2 gx-sm-5">
               <!-- Card 1 -->
               <div class="col-xl-3 col-lg-4 col-md-6 mb-4 mb-lg-0">
                 <div class="card rounded shadow-sm border-1">
